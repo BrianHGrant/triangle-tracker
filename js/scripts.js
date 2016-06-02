@@ -1,5 +1,5 @@
 var equals = function(side1, side2, side3) {
-  if (side1 === side2 && side3) {
+  if (side1 === side2 && side1 === side3) {
     return true;
     }
   else {
@@ -8,7 +8,7 @@ var equals = function(side1, side2, side3) {
 }
 
 var isoceles = function(side1, side2, side3) {
-  if ((side1 === side2 || side3) || (side2 === side3)) {
+  if (side1 === side2 || side1 === side3 || side2 === side3) {
     return true;
     }
   else {
@@ -17,12 +17,22 @@ var isoceles = function(side1, side2, side3) {
 }
 
 var scalene = function(side1, side2, side3) {
-  if (side1 != side2 != side3) {
+  if (side1 != side2 && side1 != side3 && side2 != side3) {
   return true;
   }
 else {
   return false;
 }
+}
+
+var checkTriangle = function(side1, side2, side3) {
+  if (side1 + side2 > side3 || side2 + side3 > side1 || side3 + side1 > side2)
+  {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 
@@ -37,14 +47,20 @@ $(document).ready(function() {
     $("#scalene").hide();
     $("#not").hide();
 
-    if (equals) {
-      $("#equal").show();
-    }
-    else if (isoceles) {
-      $("#isoceles").show();
+    if (!checkTriangle(side1, side2, side3)) {
+      alert("Not a triangle!!!");
     }
     else {
-        $("#not").hide();
+      if (equals(side1, side2, side3)) {
+        $("#equal").show();
+      }
+      else if (isoceles(side1, side2, side3)) {
+        $("#isoceles").show();
+      }
+      else if (scalene(side1, side2, side3)) {
+        $("#scalene").show();
+
+      }
     }
 
 
