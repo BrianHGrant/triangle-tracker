@@ -47,19 +47,22 @@ $(document).ready(function() {
     $("#scalene").hide();
     $("#not").hide();
 
-    if (!checkTriangle(side1, side2, side3)) {
-      alert("Not a triangle!!!");
-    }
-    else {
-      if (equals(side1, side2, side3)) {
-        $("#equal").show();
+    if(side1) {
+      $("#measure1").removeClass("has.error").addClass("has-success");
+      if (!checkTriangle(side1, side2, side3)) {
+        alert("Not a triangle!!!");
       }
-      else if (isoceles(side1, side2, side3)) {
-        $("#isoceles").show();
-      }
-      else if (scalene(side1, side2, side3)) {
-        $("#scalene").show();
+      else {
+        if (equals(side1, side2, side3)) {
+          $("#equal").show();
+        }
+        else if (isoceles(side1, side2, side3)) {
+          $("#isoceles").show();
+        }
+        else if (scalene(side1, side2, side3)) {
+          $("#scalene").show();
 
+        }
       }
     }
 
